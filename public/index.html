@@ -77,6 +77,45 @@
         <button type="button" id="btn-cancel" class="btn" style="display:none; background-color: #24be31;" onclick="resetForm()">Hủy</button>
     </form>
 </div>
+<div id="editModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>CHỈNH SỬA THÔNG TIN HỌC VIÊN</h3>
+      <span class="close-modal-btn" onclick="closeEditModal()">&times;</span>
+    </div>
+    <form id="edit-student-form" onsubmit="handleUpdateSave(event)">
+      <div class="modal-grid">
+        <div class="form-group">
+          <label>Họ tên</label>
+          <input type="text" id="modal-hoTen" required>
+        </div>
+        <div class="form-group">
+          <label>Lớp học</label>
+          <select id="modal-lopHoc">
+            <option value="ielts">IELTS</option>
+            <option value="toeic">TOEIC</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ngày nhập học</label>
+          <input type="date" id="modal-ngayNhapHoc" required>
+        </div>
+        <div class="form-group">
+          <label>Trạng thái</label>
+          <select id="modal-trangThai">
+            <option value="Đang học">Đang học</option>
+            <option value="Bảo lưu">Bảo lưu</option>
+            <option value="Đã nghỉ">Đã nghỉ</option>
+            <option value="Hoàn thành">Hoàn thành</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn-submit-request">Gửi yêu cầu</button>
+      </div>
+    </form>
+  </div>
+</div>
     <script src="main.js"></script>
   </body>
 </html>

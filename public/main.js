@@ -67,24 +67,59 @@ async function handleSave(event) {
   resetForm();
   loadStudents();
 }
-// 3. Hàm chuẩn bị sửa (Đổ dữ liệu lên Form)
+// 3. Hàm chuẩn bị sửa (Thay thế đoạn trong ảnh của bạn)
 async function prepareEdit(id) {
   const response = await fetch("/api/students");
   const students = await response.json();
   const s = students.find((item) => item._id === id);
 
   if (s) {
-    currentEditId = id;
-    document.getElementById("input-hoTen").value = s.hoTen;
-    document.getElementById("select-lopHoc").value = s.lopHoc;
-    document.getElementById("input-ngayNhapHoc").value = s.ngayNhapHoc;
+    currentEditId = id; // Giữ nguyên dòng lưu ID đang sửa này của bạn
 
-    // Hiển thị trạng thái hiện tại lên Form để người dùng chọn lại
-    document.getElementById("select-trangThai").value =
+    // ĐỔ DỮ LIỆU VÀO CÁC Ô INPUT TRONG CỬA SỔ MODAL POPUP
+    document.getElementById("modal-hoTen").value = s.hoTen;
+    document.getElementById("modal-lopHoc").value = s.lopHoc;
+    document.getElementById("modal-ngayNhapHoc").value = s.ngayNhapHoc;
+
+    // Đổ trạng thái hiện tại từ database vào ô select trong Modal
+    document.getElementById("modal-trangThai").value =
       s.trangThai || "Đang học";
 
-    document.getElementById("btn-main").innerText = "Xác nhận cập nhật";
-    // ... hiện nút hủy
+    // LỆNH QUAN TRỌNG: Mở cửa sổ Modal lên bằng cách đổi style thành 'flex'
+    document.getElementById("editModal").style.display = "flex";
+  }
+}
+// Hàm đóng cửa sổ Modal khi nhấn nút X hoặc lưu xong
+function closeEditModal() {
+  document.getElementById("editModal").style.display = "none";
+  currentEditId = null;
+}
+
+// Hàm gửi dữ liệu đã cập nhật từ trong Modal về Server (Thay thế hàm updateStudent cũ nếu có)
+async function handleUpdateSave(event) {
+  event.preventDefault(); // Ngăn trình duyệt tải lại trang
+
+  const data = {
+    hoTen: document.getElementById("modal-hoTen").value,
+    lopHoc: document.getElementById("modal-lopHoc").value,
+    ngayNhapHoc: document.getElementById("modal-ngayNhapHoc").value,
+    trangThai: document.getElementById("modal-trangThai").value,
+  };
+
+  try {
+    const response = await fetch(`/api/students/${currentEditId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      alert("Cập nhật thông tin học viên thành công!");
+      closeEditModal(); // Đóng popup lại
+      loadStudents(); // Tải lại bảng danh sách để cập nhật màu chữ mới
+    }
+  } catch (error) {
+    alert("Lỗi kết nối khi cập nhật thông tin!");
   }
 }
 // 4. Các hàm hỗ trợ khác
