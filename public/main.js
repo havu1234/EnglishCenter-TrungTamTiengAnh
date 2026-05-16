@@ -147,3 +147,36 @@ window.onload = () => {
   const cancelBtn = document.getElementById("btn-cancel");
   if (cancelBtn) cancelBtn.onclick = resetForm;
 };
+// Hàm tìm kiếm và lọc học viên trực tiếp trên giao diện bảng
+function filterStudents() {
+  // 1. Lấy từ khóa bạn nhập, chuyển thành chữ thường và xóa khoảng trắng thừa
+  const keyword = document
+    .getElementById("search-student")
+    .value.toLowerCase()
+    .trim();
+
+  // 2. Nhắm chính xác vào phần thân của bảng (tbody) nơi chứa các dòng học viên
+  const tbody =
+    document.getElementById("student-table-body") ||
+    document.querySelector("tbody");
+  if (!tbody) return;
+
+  // Lấy danh sách tất cả các dòng (tr) đang hiển thị trong bảng
+  const rows = tbody.getElementsByTagName("tr");
+
+  // 3. Vòng lặp quét qua từng dòng một để kiểm tra thông tin
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+
+    // Cột 1 là ID (Mã số), Cột 2 là Họ và Tên (Dựa theo cấu trúc bảng của bạn)
+    const idText = row.cells[0] ? row.cells[0].innerText.toLowerCase() : "";
+    const nameText = row.cells[1] ? row.cells[1].innerText.toLowerCase() : "";
+
+    // 4. KIỂM TRA: Nếu cột ID hoặc cột Tên chứa từ khóa tìm kiếm
+    if (idText.includes(keyword) || nameText.includes(keyword)) {
+      row.style.display = ""; // Khớp từ khóa -> Hiển thị dòng này
+    } else {
+      row.style.display = "none"; // Không khớp -> Ẩn dòng này đi
+    }
+  }
+}

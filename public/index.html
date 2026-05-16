@@ -27,7 +27,12 @@
   <div class="top-search-bar">
     <div class="search-box">
       <i class="fa-solid fa-magnifying-glass"></i> 
-      <input type="text" id="searchInput" placeholder="Nhập tên hoặc mã số học viên" onkeyup="searchStudent()">
+      <input 
+    type="text" 
+    id="search-student" 
+    placeholder="Nhập tên hoặc mã số học viên"
+    oninput="filterStudents()"
+>
     </div>
   </div>
       <h1>Danh Sách Học Viên</h1>
@@ -113,7 +118,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn-submit-request">Gửi yêu cầu</button>
+        <button type="submit" class="btn-submit-request">Cập nhật</button>
       </div>
     </form>
   </div>
