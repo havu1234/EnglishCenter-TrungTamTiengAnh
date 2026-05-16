@@ -290,3 +290,18 @@ select {
     transform: translateY(0);
   }
 }
+/* Khối bao bọc để giới hạn chiều cao và tạo thanh cuộn */
+.table-container {
+  max-height: 350px; /* Chiều cao tối đa của bảng danh sách */
+  overflow-y: auto; /* Kích hoạt thanh cuộn dọc khi dữ liệu dài ra */
+  border: 1px solid #e0e0e0; /* Đường viền nhẹ bao quanh toàn khối cho gọn gàng */
+  border-radius: 8px; /* Bo góc nhẹ cho đồng bộ giao diện */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Tạo bóng mờ nhẹ cho đẹp */
+}
+
+/* Giữ cố định thanh tiêu đề xanh (thead) luôn ở trên cùng khi bạn cuộn chuột xuống */
+.table-container .data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Đảm bảo tiêu đề luôn nằm đè lên chữ khi cuộn */
+}
