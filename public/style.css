@@ -305,3 +305,15 @@ select {
   top: 0;
   z-index: 2; /* Đảm bảo tiêu đề luôn nằm đè lên chữ khi cuộn */
 }
+/* Đảm bảo ô số điện thoại có độ rộng co giãn đều cùng các ô khác */
+.add-student-container input[type="text"],
+.add-student-container input[type="tel"], /* THÊM VÀO ĐÂY */
+.add-student-container select,
+.add-student-container input[type="date"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}

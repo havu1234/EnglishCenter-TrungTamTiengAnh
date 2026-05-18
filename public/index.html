@@ -59,6 +59,7 @@
                 <th>Họ và Tên</th>
                 <th>Lớp học</th>
                 <th>Ngày nhập học</th>
+                <th>Số điện thoại</th> 
                 <th>Trạng thái</th>
                 <th>Thao tác</th>
             </tr>
@@ -80,6 +81,7 @@
         </select>
 
         <input type="date" id="input-ngayNhapHoc" />
+        <input type="tel" id="input-soDienThoai" placeholder="Số điện thoại" required pattern="[0-9]{10}">
         <button type="button" class="btn btn-save" id="btn-main" onclick="handleSave(event)">Lưu thông tin</button>
         <button type="button" id="btn-cancel" class="btn" style="display:none; background-color: #24be31;" onclick="resetForm()">Hủy</button>
     </form>
@@ -100,12 +102,17 @@
           <label>Lớp học</label>
           <select id="modal-lopHoc">
             <option value="ielts">IELTS</option>
+            <option value="comm">COMM</option>
             <option value="toeic">TOEIC</option>
           </select>
         </div>
         <div class="form-group">
           <label>Ngày nhập học</label>
           <input type="date" id="modal-ngayNhapHoc" required>
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại</label>
+          <input type="tel" id="modal-soDienThoai" placeholder="Số điện thoại mới" required pattern="[0-9]{10}">
         </div>
         <div class="form-group">
           <label>Trạng thái</label>

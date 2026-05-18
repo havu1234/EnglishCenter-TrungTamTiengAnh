@@ -4,6 +4,7 @@ const studentSchema = new mongoose.Schema({
   hoTen: { type: String, required: true },
   lopHoc: { type: String, required: true },
   ngayNhapHoc: { type: String, required: true },
+  soDienThoai: { type: String, required: false },
   trangThai: {
     type: String,
     default: "Đang học",

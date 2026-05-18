@@ -1,6 +1,6 @@
 let currentEditId = null;
 
-// 1. Hàm hiển thị danh sách (Sửa lỗi tàng hình)
+// 1. Hàm hiển thị danh sách
 async function loadStudents() {
   try {
     const response = await fetch("/api/students");
@@ -19,12 +19,13 @@ async function loadStudents() {
       else if (s.trangThai === "Đã nghỉ") colorClass = "status-dropped";
       else if (s.trangThai === "Hoàn thành") colorClass = "status-done";
 
+      // ĐÃ CẬP NHẬT: Thêm ô hiển thị số điện thoại vào đúng vị trí cột
       tr.innerHTML = `
                 <td>#${index + 1}</td>
                 <td>${s.hoTen}</td>
                 <td>${s.lopHoc}</td>
-                <td>${s.ngayNhapHoc}</td>
-                <td><span class="status ${colorClass}">${s.trangThai || "Đang học"}</span></td>
+                <td>${s.ngayNhapHoc ? s.ngayNhapHoc.substring(0, 10) : ""}</td>
+                <td>${s.soDienThoai || "---"}</td> <td><span class="status ${colorClass}">${s.trangThai || "Đang học"}</span></td>
                 <td>
                     <button class="btn btn-edit" onclick="prepareEdit('${s._id}')">Sửa</button>
                     <button class="btn btn-delete" onclick="deleteStudent('${s._id}')">Xóa</button>
@@ -36,8 +37,7 @@ async function loadStudents() {
     console.error("Lỗi khi load danh sách:", error);
   }
 }
-
-// 2. Hàm lưu dữ liệu (Dùng chung cho cả Thêm và Sửa)
+// 2. Hàm lưu dữ liệu (Dùng chung cho cả Thêm và Sửa) - ĐÃ THÊM SỐ ĐIỆN THOẠI
 async function handleSave(event) {
   event.preventDefault();
 
@@ -45,7 +45,11 @@ async function handleSave(event) {
   const lopHoc = document.getElementById("select-lopHoc").value;
   const ngayNhapHoc = document.getElementById("input-ngayNhapHoc").value;
 
-  const data = { hoTen, lopHoc, ngayNhapHoc };
+  // 1. LẤY THÊM GIÁ TRỊ SỐ ĐIỆN THOẠI TỪ FORM GIAO DIỆN
+  const soDienThoai = document.getElementById("input-soDienThoai").value;
+
+  // 2. ĐƯA SỐ ĐIỆN THOẠI VÀO ĐỐI TƯỢNG DATA ĐỂ GỬI ĐI
+  const data = { hoTen, lopHoc, ngayNhapHoc, soDienThoai };
 
   if (currentEditId) {
     // Khi ĐANG SỬA: Lấy thêm giá trị trạng thái từ ô chọn
@@ -67,19 +71,20 @@ async function handleSave(event) {
   resetForm();
   loadStudents();
 }
-// 3. Hàm chuẩn bị sửa (Thay thế đoạn trong ảnh của bạn)
+// 3. Hàm chuẩn bị sửa
 async function prepareEdit(id) {
   const response = await fetch("/api/students");
   const students = await response.json();
   const s = students.find((item) => item._id === id);
 
   if (s) {
-    currentEditId = id; // Giữ nguyên dòng lưu ID đang sửa này của bạn
+    currentEditId = id; // Giữ nguyên dòng lưu ID đang sửa
 
     // ĐỔ DỮ LIỆU VÀO CÁC Ô INPUT TRONG CỬA SỔ MODAL POPUP
     document.getElementById("modal-hoTen").value = s.hoTen;
     document.getElementById("modal-lopHoc").value = s.lopHoc;
     document.getElementById("modal-ngayNhapHoc").value = s.ngayNhapHoc;
+    document.getElementById("modal-soDienThoai").value = s.soDienThoai || "";
 
     // Đổ trạng thái hiện tại từ database vào ô select trong Modal
     document.getElementById("modal-trangThai").value =
@@ -95,7 +100,7 @@ function closeEditModal() {
   currentEditId = null;
 }
 
-// Hàm gửi dữ liệu đã cập nhật từ trong Modal về Server (Thay thế hàm updateStudent cũ nếu có)
+// Hàm gửi dữ liệu đã cập nhật từ trong Modal về Server (ĐÃ THÊM SỐ ĐIỆN THOẠI)
 async function handleUpdateSave(event) {
   event.preventDefault(); // Ngăn trình duyệt tải lại trang
 
@@ -104,6 +109,9 @@ async function handleUpdateSave(event) {
     lopHoc: document.getElementById("modal-lopHoc").value,
     ngayNhapHoc: document.getElementById("modal-ngayNhapHoc").value,
     trangThai: document.getElementById("modal-trangThai").value,
+
+    // 🛠️ THÊM DÒNG NÀY: Lấy số điện thoại mới sửa từ Modal để đóng gói gửi đi
+    soDienThoai: document.getElementById("modal-soDienThoai").value,
   };
 
   try {

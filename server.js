@@ -4,7 +4,7 @@ const cors = require("cors");
 const Student = require("./student");
 
 const app = express();
-const PORT = 3000; // <--- ĐƯA DÒNG NÀY LÊN ĐÂY
+const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -26,13 +26,14 @@ app.get("/api/students", async (req, res) => {
   }
 });
 
-// API 2: Thêm học viên mới (ĐÃ SỬA)
+// API 2: Thêm học viên mới (ĐÃ CẬP NHẬT SỐ ĐIỆN THOẠI)
 app.post("/api/students", async (req, res) => {
   try {
     const student = new Student({
       hoTen: req.body.hoTen,
       lopHoc: req.body.lopHoc,
       ngayNhapHoc: req.body.ngayNhapHoc,
+      soDienThoai: req.body.soDienThoai, // 🛠️ THÊM DÒNG NÀY ĐỂ NHẬN SỐ ĐIỆN THOẠI
       trangThai: "Đang học",
     });
 
@@ -43,13 +44,15 @@ app.post("/api/students", async (req, res) => {
   }
 });
 
-// API 3: Sửa học viên
+// API 3: Sửa học viên (ĐÃ CẬP NHẬT SỐ ĐIỆN THOẠI)
 app.put("/api/students/:id", async (req, res) => {
   try {
-    const { hoTen, lopHoc, ngayNhapHoc, trangThai } = req.body;
+    // 🛠️ THÊM soDienThoai VÀO ĐOẠN BÓC TÁCH DỮ LIỆU (DESTRUCTURING)
+    const { hoTen, lopHoc, ngayNhapHoc, trangThai, soDienThoai } = req.body;
+
     const updatedStudent = await Student.findByIdAndUpdate(
       req.params.id,
-      { hoTen, lopHoc, ngayNhapHoc, trangThai },
+      { hoTen, lopHoc, ngayNhapHoc, trangThai, soDienThoai }, // 🛠️ THÊM VÀO ĐÂY ĐỂ CHO PHÉP CẬP NHẬT
       { new: true, runValidators: true },
     );
     res.json(updatedStudent);
@@ -67,6 +70,7 @@ app.delete("/api/students/:id", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 app.listen(PORT, () => {
   console.log(`Server đang chạy tại: http://localhost:${PORT}`);
 });
