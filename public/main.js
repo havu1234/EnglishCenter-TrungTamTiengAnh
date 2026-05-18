@@ -9,6 +9,24 @@ async function loadStudents() {
     // SỬA: Thêm BASE_URL vào trước đường dẫn
     const response = await fetch(`${BASE_URL}/api/students`);
     const data = await response.json();
+
+    // 🟢 THÊM ĐOẠN KIỂM TRA NÀY ĐỂ SỬA LỖI ĐƠN PHƯƠNG SẬP CODE FOREACH
+    if (!Array.isArray(data)) {
+      console.error(
+        "Dữ liệu nhận được không phải là mảng hợp lệ. Server đang trả về:",
+        data,
+      );
+
+      // Hiển thị trực tiếp lỗi từ server lên màn hình để bạn dễ debug
+      const tbody = document.querySelector("tbody");
+      if (tbody) {
+        tbody.innerHTML = `<tr><td colspan="7" style="color: red; text-align: center;">
+          Lỗi Server (500): ${data.message || "Không thể kết nối Database đám mây"}
+        </td></tr>`;
+      }
+      return; // Dừng hàm tại đây, không chạy xuống forEach phía dưới nữa
+    }
+
     const tbody = document.querySelector("tbody");
     if (!tbody) return;
     tbody.innerHTML = "";
