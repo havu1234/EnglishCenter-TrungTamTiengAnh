@@ -1,7 +1,7 @@
 let currentEditId = null;
 
 // 🟢 BƯỚC 1: KHAI BÁO LINK SERVER RENDER CỦA BẠN Ở ĐÂY
-const BASE_URL = "https://english-center-moc7.onrender.com";
+const BASE_URL = "https://englishcenter-moc7.onrender.com";
 
 // 1. Hàm hiển thị danh sách
 async function loadStudents() {
@@ -117,7 +117,7 @@ async function handleUpdateSave(event) {
     ngayNhapHoc: document.getElementById("modal-ngayNhapHoc").value,
     trangThai: document.getElementById("modal-trangThai").value,
 
-    // 🛠️ THÊM DÒNG NÀY: Lấy số điện thoại mới sửa từ Modal để đóng gói gửi đi
+    //THÊM DÒNG NÀY: Lấy số điện thoại mới sửa từ Modal để đóng gói gửi đi
     soDienThoai: document.getElementById("modal-soDienThoai").value,
   };
 
