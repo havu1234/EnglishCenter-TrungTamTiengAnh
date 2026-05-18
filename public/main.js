@@ -1,9 +1,13 @@
 let currentEditId = null;
 
+// 🟢 BƯỚC 1: KHAI BÁO LINK SERVER RENDER CỦA BẠN Ở ĐÂY
+const BASE_URL = "https://english-center-moc7.onrender.com";
+
 // 1. Hàm hiển thị danh sách
 async function loadStudents() {
   try {
-    const response = await fetch("/api/students");
+    // SỬA: Thêm BASE_URL vào trước đường dẫn
+    const response = await fetch(`${BASE_URL}/api/students`);
     const data = await response.json();
     const tbody = document.querySelector("tbody");
     if (!tbody) return;
@@ -55,14 +59,16 @@ async function handleSave(event) {
     // Khi ĐANG SỬA: Lấy thêm giá trị trạng thái từ ô chọn
     data.trangThai = document.getElementById("select-trangThai").value;
 
-    await fetch(`/api/students/${currentEditId}`, {
+    // SỬA: Thêm BASE_URL vào đây
+    await fetch(`${BASE_URL}/api/students/${currentEditId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
   } else {
     // Khi THÊM MỚI: Không gửi trangThai (Server sẽ tự hiểu là "Đang học")
-    await fetch("/api/students", {
+    // SỬA: Thêm BASE_URL vào đây
+    await fetch(`${BASE_URL}/api/students`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -73,7 +79,8 @@ async function handleSave(event) {
 }
 // 3. Hàm chuẩn bị sửa
 async function prepareEdit(id) {
-  const response = await fetch("/api/students");
+  // SỬA: Thêm BASE_URL vào đây
+  const response = await fetch(`${BASE_URL}/api/students`);
   const students = await response.json();
   const s = students.find((item) => item._id === id);
 
@@ -115,7 +122,8 @@ async function handleUpdateSave(event) {
   };
 
   try {
-    const response = await fetch(`/api/students/${currentEditId}`, {
+    // SỬA: Thêm BASE_URL vào đây
+    const response = await fetch(`${BASE_URL}/api/students/${currentEditId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -141,7 +149,8 @@ function resetForm() {
 
 async function deleteStudent(id) {
   if (confirm("Bạn có chắc chắn muốn xóa?")) {
-    await fetch(`/api/students/${id}`, { method: "DELETE" });
+    // SỬA: Thêm BASE_URL vào đây
+    await fetch(`${BASE_URL}/api/students/${id}`, { method: "DELETE" });
     loadStudents();
   }
 }

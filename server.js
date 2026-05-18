@@ -33,7 +33,7 @@ app.post("/api/students", async (req, res) => {
       hoTen: req.body.hoTen,
       lopHoc: req.body.lopHoc,
       ngayNhapHoc: req.body.ngayNhapHoc,
-      soDienThoai: req.body.soDienThoai, // 🛠️ THÊM DÒNG NÀY ĐỂ NHẬN SỐ ĐIỆN THOẠI
+      soDienThoai: req.body.soDienThoai, // THÊM DÒNG NÀY ĐỂ NHẬN SỐ ĐIỆN THOẠI
       trangThai: "Đang học",
     });
 
