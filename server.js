@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const Student = require("./student");
+const Class = require("./classModel");
 
 const app = express();
 const PORT = 3000;
@@ -73,4 +74,52 @@ app.delete("/api/students/:id", async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server đang chạy tại: http://localhost:${PORT}`);
+});
+// API lấy danh sách lớp học + Tìm kiếm lớp học
+app.get("/api/classes", async (req, res) => {
+  try {
+    const { search } = req.query;
+    let query = {};
+
+    // Nếu người dùng gõ tìm kiếm, tìm theo Tên lớp hoặc Mã lớp (không phân biệt hoa thường)
+    if (search) {
+      query = {
+        $or: [
+          { tenLop: { $regex: search, $options: "i" } },
+          { maLop: { $regex: search, $options: "i" } }
+        ]
+      };
+    }
+
+    const classes = await Class.find(query);
+    res.json(classes);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// API Thêm lớp học mới
+app.post("/api/classes", async (req, res) => {
+  try {
+    const { tenLop, giaoVien, loaiLop, siSoToiDa, lichHoc } = req.body;
+
+    // Tự động sinh Mã Lớp dựa trên loại lớp (VD: ielts -> IELTS-8492)
+    const randomId = Math.floor(1000 + Math.random() * 9000);
+    const maLop = `${loaiLop.toUpperCase()}-${randomId}`;
+
+    const newClass = new Class({
+      maLop,
+      tenLop,
+      giaoVien,
+      loaiLop,
+      siSoToiDa,
+      siSoHienTai: 0, // Mặc định lớp mới tạo có 0 học viên
+      lichHoc
+    });
+
+    await newClass.save();
+    res.status(201).json({ message: "Thêm lớp học thành công!", data: newClass });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });

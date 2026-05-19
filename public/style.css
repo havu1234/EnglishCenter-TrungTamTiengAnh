@@ -317,3 +317,41 @@ select {
   outline: none;
   font-size: 14px;
 }
+/* Khung bọc ngoài cùng của vùng nội dung bên phải */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Khung màu trắng bọc quanh bảng danh sách để tạo đổ bóng và bo góc giống trang Học viên */
+.table-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Đảm bảo form thêm mới bẻ hàng ngang mượt mà, co giãn đều */
+.add-student-container form {
+  display: flex;
+  flex-wrap: wrap; /* Nếu màn hình nhỏ quá sẽ tự xuống dòng thay vì đè lên nhau */
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.add-student-container form input,
+.add-student-container form select {
+  flex: 1;
+  min-width: 150px; /* Không cho phép ô input bị bóp quá nhỏ */
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  outline: none;
+}
