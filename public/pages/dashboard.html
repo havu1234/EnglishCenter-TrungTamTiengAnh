@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Hệ Thống Quản Lý Trung Tâm Anh Ngữ</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">
+        <h2>🎓 Trung Tâm Anh Ngữ</h2>
+      </div>
+      <nav class="nav-menu">
+        <a href="dashboard.html" class="nav-item active">
+          <span class="icon">📊</span>
+          <span>Tổng Quan</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <span class="icon">👥</span>
+          <span>Học Viên</span>
+        </a>
+        <a href="lophoc.html" class="nav-item">
+          <span class="icon">📚</span>
+          <span>Lớp Học</span>
+        </a>
+        <a href="diemdanh.html" class="nav-item">
+          <span class="icon">✓</span>
+          <span>Điểm Danh</span>
+        </a>
+        <a href="hocphi.html" class="nav-item">
+          <span class="icon">💰</span>
+          <span>Học Phí</span>
+        </a>
+      </nav>
+      <div class="user-info">
+        <div class="user-avatar">👤</div>
+        <div class="user-details">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-role" id="userRole">Loading...</div>
+        </div>
+        <button class="btn-logout" id="btnLogout">Đăng xuất</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <h1 id="pageTitle">Tổng Quan</h1>
+        <div class="header-actions">
+          <span class="date" id="currentDate"></span>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="content" id="contentArea">
+        <!-- Overview Page -->
+        <div class="page-content" id="overviewPage">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-info">
+                <div class="stat-value" id="totalStudents">0</div>
+                <div class="stat-label">Tổng Học Viên</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📚</div>
+              <div class="stat-info">
+                <div class="stat-value" id="totalClasses">0</div>
+                <div class="stat-label">Tổng Lớp Học</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">✓</div>
+              <div class="stat-info">
+                <div class="stat-value" id="activeStudents">0</div>
+                <div class="stat-label">Đang Học</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="stat-info">
+                <div class="stat-value" id="revenue">0đ</div>
+                <div class="stat-label">Doanh Thu Tháng</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="welcome-message">
+            <h2>Chào mừng đến với Hệ Thống Quản Lý!</h2>
+            <p>
+              Chọn menu bên trái để bắt đầu quản lý học viên, lớp học, điểm danh
+              và học phí.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>

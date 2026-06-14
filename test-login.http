@@ -1,0 +1,62 @@
+### Test Login API
+### Sử dụng REST Client extension trong VS Code
+
+### 1. Login với Admin
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Admin@123"
+}
+
+### 2. Login với Teacher
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "teacher1",
+  "password": "Teacher@123"
+}
+
+### 3. Login với Receptionist
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "receptionist1",
+  "password": "Receptionist@123"
+}
+
+### 4. Login với Accountant
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "accountant1",
+  "password": "Accountant@123"
+}
+
+### 5. Login với sai mật khẩu
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "wrongpassword"
+}
+
+### 6. Get current user (cần token)
+GET http://localhost:5000/api/auth/me
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### 7. Refresh token
+POST http://localhost:5000/api/auth/refresh
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### 8. Logout
+POST http://localhost:5000/api/auth/logout
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### 9. Health check
+GET http://localhost:5000/api/health

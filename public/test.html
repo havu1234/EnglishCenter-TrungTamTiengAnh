@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Server Running</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4F46E5;
+            margin-bottom: 20px;
+        }
+        .success {
+            color: #10B981;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .link {
+            display: block;
+            padding: 15px;
+            background: #4F46E5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .link:hover {
+            background: #4338CA;
+        }
+        .info {
+            background: #EEF2FF;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .code {
+            background: #1F2937;
+            color: #10B981;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🎉 Server Đang Chạy Thành Công!</h1>
+        <p class="success">✅ Hệ Thống Hoạt Động Bình Thường</p>
+        
+        <div class="info">
+            <strong>Thông tin server:</strong><br>
+            Port: 5000<br>
+            Status: Running<br>
+            Database: MongoDB Connected
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📍 Các Trang Có Thể Truy Cập</h2>
+        
+        <a href="/pages/login.html" class="link">
+            🔐 Trang Đăng Nhập
+        </a>
+        
+        <a href="/pages/dashboard.html" class="link">
+            📊 Dashboard (Cần đăng nhập)
+        </a>
+        
+        <a href="/api/health" class="link">
+            ❤️ Health Check API
+        </a>
+    </div>
+
+    <div class="card">
+        <h2>👤 Tài Khoản Đăng Nhập</h2>
+        <div class="code">
+            Username: admin<br>
+            Password: Admin@123
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🧪 Test API</h2>
+        <button onclick="testAPI()" class="link" style="cursor: pointer; border: none;">
+            Test Login API
+        </button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Đang test...</p>';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'Admin@123'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <div class="info" style="background: #D1FAE5; color: #065F46;">
+                            <strong>✅ API hoạt động tốt!</strong><br>
+                            User: ${data.user.fullName}<br>
+                            Role: ${data.role}<br>
+                            Token: ${data.token.substring(0, 50)}...
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="info" style="background: #FEE2E2; color: #991B1B;">
+                            <strong>❌ Lỗi:</strong> ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="info" style="background: #FEE2E2; color: #991B1B;">
+                        <strong>❌ Lỗi kết nối:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

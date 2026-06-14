@@ -10,4 +10,7 @@ const classSchema = new mongoose.Schema({
   lichHoc: { type: String, required: true }, // VD: Thứ 2-4-6 (18:00)
 });
 
+// Đảm bảo không có dòng classSchema.index({ maLop: 1 }) ở đây
+// vì unique: true đã tự động tạo index.
+
 module.exports = mongoose.model("Class", classSchema);

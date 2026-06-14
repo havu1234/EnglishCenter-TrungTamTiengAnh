@@ -1,0 +1,67 @@
+﻿English Center Management System - Project Structure
+====================================================
+
+TEST/
+├── src/                              # Source code
+│   ├── config/
+│   │   ├── database.js              # MongoDB connection
+│   │   └── constants.js             # App constants
+│   ├── models/                      # Mongoose schemas
+│   │   ├── classModel.js            # Class model
+│   │   └── student.js               # Student model
+│   ├── controllers/                 # Request handlers (to be created)
+│   ├── routes/                      # API routes (to be created)
+│   ├── middleware/                  # Custom middleware (to be created)
+│   ├── utils/                       # Utility functions (to be created)
+│   ├── services/                    # Business logic (to be created)
+│   ├── app.js                       # Express app setup
+│   └── server.js                    # Entry point
+├── public/                          # Frontend files
+│   ├── css/
+│   │   └── style.css               # Main stylesheet
+│   ├── js/
+│   │   ├── main.js                 # Main app logic
+│   │   └── lophoc.js               # Class management
+│   └── pages/
+│       ├── index.html              # Main page
+│       ├── hocphi.html             # Tuition page
+│       └── lophoc.html             # Class page
+├── tests/                           # Test files (to be created)
+├── docs/                            # Documentation
+│   ├── PROJECT_STRUCTURE.md         # Detailed structure
+│   ├── GETTING_STARTED.md           # Setup guide
+│   ├── API.md                       # API documentation (to be created)
+│   └── DATABASE.md                  # Database schema (to be created)
+├── .kiro/                           # Kiro spec files
+│   └── specs/
+│       └── english-center-management/
+│           ├── requirements.md      # Requirements document
+│           ├── design.md            # Design document
+│           └── tasks.md             # Implementation tasks
+├── .env.example                     # Environment template
+├── .gitignore                       # Git ignore rules
+├── package.json                     # Dependencies
+├── server.js                        # Entry point
+└── README.md                        # Project README
+
+Key Files Created:
+✓ src/config/database.js             - MongoDB connection setup
+✓ src/config/constants.js            - Application constants
+✓ src/app.js                         # Express app configuration
+✓ server.js                          # Entry point
+✓ .env.example                       # Environment template
+✓ README.md                          # Project documentation
+✓ docs/PROJECT_STRUCTURE.md          # Detailed structure guide
+✓ docs/GETTING_STARTED.md            # Setup instructions
+✓ .gitignore                         # Git ignore rules
+
+Next Steps:
+1. Review the structure in VS Code
+2. Read docs/GETTING_STARTED.md for setup instructions
+3. Create MongoDB models in src/models/
+4. Create API controllers in src/controllers/
+5. Create API routes in src/routes/
+6. Implement middleware in src/middleware/
+7. Create business services in src/services/
+8. Build frontend components in public/
+
