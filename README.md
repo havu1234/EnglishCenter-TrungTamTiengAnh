@@ -2,7 +2,7 @@
 
 Hệ thống quản lý học viên cho trung tâm Anh ngữ - một ứng dụng web nội bộ giúp quản lý toàn bộ hoạt động từ hồ sơ học viên, lớp học, lịch học, đến học phí và báo cáo.
 
-## 📋 Tính Năng Chính
+## Tính Năng Chính
 
 - ✅ **Xác thực & Phân quyền** - JWT tokens, bcrypt hashing, 4 vai trò người dùng
 - ✅ **Quản lý học viên** - CRUD, tìm kiếm, phân trang
@@ -79,7 +79,7 @@ Tài liệu chi tiết về yêu cầu, thiết kế và danh sách công việc
 | **Lễ tân** | Quản lý hồ sơ học viên, xem lớp |
 | **Kế toán** | Quản lý học phí, xem báo cáo |
 
-## 🔧 Công Nghệ Sử Dụng
+## Công Nghệ Sử Dụng
 
 ### Backend
 - **Express.js** - Web framework
@@ -95,7 +95,7 @@ Tài liệu chi tiết về yêu cầu, thiết kế và danh sách công việc
 - **JavaScript (ES6+)** - Interactivity
 - **Responsive Design** - Mobile-friendly
 
-## 📝 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/login` - Đăng nhập
@@ -134,7 +134,7 @@ Tài liệu chi tiết về yêu cầu, thiết kế và danh sách công việc
 ### Dashboard
 - `GET /api/dashboard` - Thống kê chung
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Chạy tất cả tests
