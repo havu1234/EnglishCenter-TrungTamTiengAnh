@@ -1,3 +1,4 @@
+**Lưu ý:** Trang này yêu cầu đăng nhập với quyền Admin hoặc Lễ tân để truy cập dữ liệu.
 # 🎓 HƯỚNG DẪN SỬ DỤNG CHỨC NĂNG HỌC VIÊN
 
 ## ✅ ĐÃ HOÀN THÀNH
