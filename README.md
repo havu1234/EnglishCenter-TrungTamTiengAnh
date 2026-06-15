@@ -12,7 +12,7 @@ Hệ thống quản lý học viên cho trung tâm Anh ngữ - một ứng dụn
 - ✅ **Dashboard** - Thống kê, báo cáo theo vai trò
 - ✅ **Quản lý tài khoản** - Tạo, sửa, vô hiệu hóa tài khoản
 
-## 🏗️ Cấu Trúc Dự Án
+##  Cấu Trúc Dự Án
 
 ```
 TEST/
@@ -38,7 +38,7 @@ TEST/
 └── README.md                # This file
 ```
 
-## 🚀 Cài Đặt & Chạy
+## Cài Đặt & Chạy
 
 ### Yêu Cầu
 - Node.js >= 14.0
@@ -63,14 +63,14 @@ npm start
 
 Server sẽ chạy trên `http://localhost:5000`
 
-## 📚 Tài Liệu Spec
+## Tài Liệu Spec
 
 Tài liệu chi tiết về yêu cầu, thiết kế và danh sách công việc:
 - **Requirements**: `.kiro/specs/english-center-management/requirements.md`
 - **Design**: `.kiro/specs/english-center-management/design.md`
 - **Tasks**: `.kiro/specs/english-center-management/tasks.md`
 
-## 🔐 Vai Trò & Quyền Hạn
+## Vai Trò & Quyền Hạn
 
 | Vai Trò | Quyền Hạn |
 |---------|-----------|
@@ -147,7 +147,7 @@ npm run test:coverage
 npm run test:watch
 ```
 
-## 📦 Build & Deploy
+## Build & Deploy
 
 ```bash
 # Build production
@@ -157,18 +157,18 @@ npm run build
 npm run start:prod
 ```
 
-## 🤝 Đóng Góp
+## Đóng Góp
 
 Vui lòng tuân theo các quy tắc:
 1. Tạo branch mới cho mỗi feature
 2. Commit messages rõ ràng
 3. Tạo Pull Request với mô tả chi tiết
 
-## 📄 License
+## License
 
 MIT License - Xem file LICENSE để chi tiết
 
-## 📞 Liên Hệ
+## Liên Hệ
 
 Nếu có câu hỏi hoặc vấn đề, vui lòng tạo issue trên GitHub.
 
